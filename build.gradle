@@ -13,16 +13,6 @@ allprojects {
     }
 }
 
-subprojects {
-    sourceSets{
-        test {
-            resources {
-                srcDir('resources')
-            }
-        }
-    }
-}
-
 configurations {
     childJars
 }

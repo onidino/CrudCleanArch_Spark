@@ -8,9 +8,11 @@ import spark.servlet.SparkApplication;
 public class Application implements SparkApplication {
 
     private final MainRouter mainRouter;
+    private final Server server;
 
     public Application() {
         this.mainRouter = new MainRouter();
+        this.server = new Server();
     }
 
     @Override
@@ -18,8 +20,14 @@ public class Application implements SparkApplication {
         // Injectors
         InjectorFactory.addInjectors();
 
+        // Server Config
+        server.config();
+
         // Endpoints
         mainRouter.addRoutes();
+
+        // Server Start
+        server.start();
     }
 
 
