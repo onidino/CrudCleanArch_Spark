@@ -1,8 +1,6 @@
 package com.cleancrud.spark.entrypoint;
 
 import com.cleancrud.spark.utils.Json;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,13 +19,12 @@ public abstract class EntryPoint implements Route {
 
     @Override
     public Object handle(Request request, Response response) {
-        String log = String.format("request: /%s", request.uri());
-        LOGGER.info(log);
+        LOGGER.info("request: {} - {}", request.requestMethod(), request.uri());
+
         response.type("application/json");
         response.status(HttpStatus.OK_200);
-
         return internalHandle(request, response);
     }
 
-    protected abstract Response internalHandle(Request request, Response response);
+    protected abstract Object internalHandle(Request request, Response response);
 }

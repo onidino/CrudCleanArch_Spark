@@ -7,11 +7,11 @@ import spark.Response;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.HashMap;
+import java.util.Map;
 
 @Singleton
 public class GetEntryPoint extends EntryPoint {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(GetEntryPoint.class);
 
     @Inject
     public GetEntryPoint() {
@@ -19,14 +19,14 @@ public class GetEntryPoint extends EntryPoint {
     }
 
     @Override
-    protected Response internalHandle(Request request, Response response) {
-        LOGGER.info("GET");
+    protected Object internalHandle(Request request, Response response) {
+        Map<String, String> result = new HashMap<>();
         try {
-            response.body(json.render( "GET RESPONSE"));
+            // TODO here we use the usecases from domain
+            result.put("result", "GET RESPONSE");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return response;
+        return json.render(result);
     }
 }
