@@ -9,6 +9,9 @@ import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * GET entrypoint.
+ */
 @Singleton
 public class GetEntryPoint extends EntryPoint {
 
@@ -18,14 +21,17 @@ public class GetEntryPoint extends EntryPoint {
     }
 
     @Override
-    protected Object internalHandle(Request request, Response response) {
+    protected Response internalHandle(Request request, Response response) {
         Map<String, String> result = new HashMap<>();
+
         try {
             // TODO here we use the usecases from domain
             result.put("result", "GET RESPONSE");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return json.render(result);
+
+        response.body(serialize(result));
+        return response;
     }
 }

@@ -12,5 +12,6 @@ bin/
 build/
 /application/build/
 /application/out/
+/application/src/test/java/utils
 /domain/build/
 /domain/out/

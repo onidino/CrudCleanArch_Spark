@@ -3,7 +3,7 @@ package com.cleancrud.spark.utils;
 import com.google.gson.Gson;
 import spark.ResponseTransformer;
 
-public class Json implements ResponseTransformer {
+public class JsonTransformer implements ResponseTransformer {
 
     private final Gson gson = new Gson();
 
@@ -16,3 +16,4 @@ public class Json implements ResponseTransformer {
         return gson.fromJson(jsonString, clazz);
     }
 }
+

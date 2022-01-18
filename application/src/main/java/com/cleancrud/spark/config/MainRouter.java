@@ -15,6 +15,8 @@ public class MainRouter implements RouteGroup {
 
     @Override
     public void addRoutes() {
+        after((request, response) -> response.type("application/json"));
+
         path("/clean/spark", () -> {
             post("/create", Application.getInjectorInstance(PostEntryPoint.class));
             get("/read", Application.getInjectorInstance(GetEntryPoint.class));
