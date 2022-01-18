@@ -19,7 +19,8 @@ public abstract class EntryPoint implements Route {
 
     @Override
     public Object handle(Request request, Response response) {
-        LOGGER.info("request: {} - {}", request.requestMethod(), request.uri());
+        final String logMsg = String.format("request: %s - %s", request.requestMethod(), request.uri());
+        LOGGER.info(logMsg);
 
         response.type("application/json");
         response.status(HttpStatus.OK_200);
