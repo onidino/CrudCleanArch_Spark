@@ -1,0 +1,4 @@
+rootProject.name = 'CrudCleanArch_Spark'
+include 'application'
+include 'domain'
+
