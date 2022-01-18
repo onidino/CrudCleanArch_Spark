@@ -1,7 +1,5 @@
 package com.cleancrud.spark.entrypoint;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import spark.Request;
 import spark.Response;
 

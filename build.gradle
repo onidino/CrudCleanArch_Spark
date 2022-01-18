@@ -14,8 +14,6 @@ allprojects {
 }
 
 subprojects {
-    apply from: file('../gradle/dependencies.gradle')
-
     sourceSets{
         test {
             resources {

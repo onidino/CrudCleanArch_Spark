@@ -1,8 +1,0 @@
-ext {
-    sparkVersion = '2.9.3'
-    javaInject = '1'
-    junitJupiter = '5.8.2'
-    guice = "5.0.1"
-    gson = "2.8.9"
-    slf4j = "1.7.29"
-}
