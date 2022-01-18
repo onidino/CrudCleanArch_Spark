@@ -1,5 +1,6 @@
-package com.cleancrud.spark.entrypoint;
+package com.cleancrud.spark.entrypoint.impl;
 
+import com.cleancrud.spark.entrypoint.EntryPoint;
 import spark.Request;
 import spark.Response;
 
@@ -9,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Singleton
-public class GetEntryPoint extends EntryPoint {
+public class DeleteEntryPoint extends EntryPoint {
 
     @Inject
-    public GetEntryPoint() {
+    public DeleteEntryPoint() {
         // TODO Usecases to use
     }
 
@@ -21,7 +22,7 @@ public class GetEntryPoint extends EntryPoint {
         Map<String, String> result = new HashMap<>();
         try {
             // TODO here we use the usecases from domain
-            result.put("result", "GET RESPONSE");
+            result.put("result", "DELETE RESPONSE");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,9 +1,9 @@
 package com.cleancrud.spark.config;
 
-import com.cleancrud.spark.entrypoint.DeleteEntryPoint;
-import com.cleancrud.spark.entrypoint.GetEntryPoint;
-import com.cleancrud.spark.entrypoint.PostEntryPoint;
-import com.cleancrud.spark.entrypoint.PutEntryPoint;
+import com.cleancrud.spark.entrypoint.impl.DeleteEntryPoint;
+import com.cleancrud.spark.entrypoint.impl.GetEntryPoint;
+import com.cleancrud.spark.entrypoint.impl.PostEntryPoint;
+import com.cleancrud.spark.entrypoint.impl.PutEntryPoint;
 import spark.RouteGroup;
 
 import javax.inject.Singleton;

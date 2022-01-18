@@ -10,7 +10,8 @@ public class InjectorFactory {
     private static final String INJECTORS_KEY = "INJECTORS";
     private static final ConcurrentHashMap<String, Injector> injectors = new ConcurrentHashMap<>();
 
-    private InjectorFactory(){}
+    private InjectorFactory() {
+    }
 
     public static Injector create() {
         return Guice.createInjector(
