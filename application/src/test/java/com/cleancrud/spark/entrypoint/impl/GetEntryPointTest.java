@@ -1,5 +1,6 @@
 package com.cleancrud.spark.entrypoint.impl;
 
+import com.cleancrud.spark.utils.JsonTransformer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,24 +13,26 @@ import utils.ResponseMock;
 
 class GetEntryPointTest extends BaseUnitTest {
 
-    private RequestMock request;
-    private ResponseMock response;
+  private RequestMock request;
+  private ResponseMock response;
+  private final JsonTransformer jsonTransformer = new JsonTransformer();
 
-    @InjectMocks
-    private GetEntryPoint getEntryPoint;
+  @InjectMocks
+  private GetEntryPoint getEntryPoint;
 
-    @BeforeEach
-    public void initMocks() {
-        super.closeable = MockitoAnnotations.openMocks(this);
-        request = new RequestMock();
-        response = new ResponseMock();
-    }
+  @BeforeEach
+  public void initMocks() {
+    super.closeable = MockitoAnnotations.openMocks(this);
+    getEntryPoint = new GetEntryPoint(jsonTransformer);
+    request = new RequestMock();
+    response = new ResponseMock();
+  }
 
-    @Test
-    void whenPutRequestThenOk() {
-        Response result = getEntryPoint.internalHandle(request, response);
+  @Test
+  void whenPutRequestThenOk() {
+    Response result = getEntryPoint.internalHandle(request, response);
 
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals("{\"result\":\"GET RESPONSE\"}", result.body());
-    }
+    Assertions.assertNotNull(result);
+    Assertions.assertEquals("{\"result\":\"GET RESPONSE\"}", result.body());
+  }
 }

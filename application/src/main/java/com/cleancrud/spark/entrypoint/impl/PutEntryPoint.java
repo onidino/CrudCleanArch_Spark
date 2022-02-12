@@ -1,6 +1,7 @@
 package com.cleancrud.spark.entrypoint.impl;
 
 import com.cleancrud.spark.entrypoint.EntryPoint;
+import com.cleancrud.spark.utils.JsonTransformer;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
@@ -15,8 +16,8 @@ import spark.Response;
 public class PutEntryPoint extends EntryPoint {
 
   @Inject
-  public PutEntryPoint() {
-    // TODO Usecases to use
+  public PutEntryPoint(JsonTransformer json) {
+    super(json);
   }
 
   @Override

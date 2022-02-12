@@ -1,6 +1,7 @@
 package com.cleancrud.spark.entrypoint;
 
 import com.cleancrud.spark.utils.JsonTransformer;
+import javax.inject.Inject;
 import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +17,9 @@ public abstract class EntryPoint implements Route {
   private static final Logger LOGGER = LoggerFactory.getLogger(EntryPoint.class);
   protected JsonTransformer json;
 
-  protected EntryPoint() {
-    this.json = new JsonTransformer();
+  @Inject
+  protected EntryPoint(JsonTransformer json) {
+    this.json = json;
   }
 
   @Override
