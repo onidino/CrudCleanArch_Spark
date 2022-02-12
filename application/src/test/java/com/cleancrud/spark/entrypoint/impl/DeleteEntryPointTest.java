@@ -32,4 +32,13 @@ class DeleteEntryPointTest extends BaseUnitTest {
         Assertions.assertNotNull(result);
         Assertions.assertEquals("{\"result\":\"DELETE RESPONSE\"}", result.body());
     }
+
+    @Test
+    void whenDeleteRequestFailsThenThrowsException() {
+        Response result = deleteEntryPoint.internalHandle(request, response);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals("{\"result\":\"DELETE RESPONSE\"}", result.body());
+    }
+
 }

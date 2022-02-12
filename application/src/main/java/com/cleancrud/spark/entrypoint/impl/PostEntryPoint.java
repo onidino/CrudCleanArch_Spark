@@ -1,13 +1,12 @@
 package com.cleancrud.spark.entrypoint.impl;
 
 import com.cleancrud.spark.entrypoint.EntryPoint;
-import spark.Request;
-import spark.Response;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import spark.Request;
+import spark.Response;
 
 /**
  * POST entrypoint.
@@ -27,11 +26,11 @@ public class PostEntryPoint extends EntryPoint {
         try {
             // TODO here we use the usecases from domain
             result.put("result", "POST RESPONSE");
+            response.body(serialize(result));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        response.body(serialize(result));
         return response;
     }
 }
