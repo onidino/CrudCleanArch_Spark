@@ -15,10 +15,13 @@ import spark.Route;
 public abstract class EntryPoint implements Route {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(EntryPoint.class);
-  protected JsonTransformer json;
+  protected final JsonTransformer json;
 
   @Inject
   protected EntryPoint(JsonTransformer json) {
+    if (json == null) {
+      json = new JsonTransformer();
+    }
     this.json = json;
   }
 
