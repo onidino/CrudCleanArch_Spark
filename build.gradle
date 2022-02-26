@@ -1,6 +1,7 @@
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'java'
+    apply plugin: 'jacoco'
 
     group 'com.cleancrud.spark'
     version '0.0.1-SNAPSHOT'
