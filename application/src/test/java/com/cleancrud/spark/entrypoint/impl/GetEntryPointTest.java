@@ -1,5 +1,6 @@
 package com.cleancrud.spark.entrypoint.impl;
 
+import com.cleancrud.spark.entrypoint.GetEntryPoint;
 import com.cleancrud.spark.utils.JsonTransformer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

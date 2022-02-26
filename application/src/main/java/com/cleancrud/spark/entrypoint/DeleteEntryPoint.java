@@ -1,6 +1,5 @@
-package com.cleancrud.spark.entrypoint.impl;
+package com.cleancrud.spark.entrypoint;
 
-import com.cleancrud.spark.entrypoint.EntryPoint;
 import com.cleancrud.spark.utils.JsonTransformer;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,28 +9,27 @@ import spark.Request;
 import spark.Response;
 
 /**
- * GET entrypoint.
+ * DELETE entrypoint.
  */
 @Singleton
-public class GetEntryPoint extends EntryPoint {
+public class DeleteEntryPoint extends EntryPoint {
 
   @Inject
-  public GetEntryPoint(JsonTransformer json) {
+  public DeleteEntryPoint(JsonTransformer json) {
     super(json);
   }
 
   @Override
-  protected Response internalHandle(Request request, Response response) {
+  public Response internalHandle(Request request, Response response) {
     Map<String, String> result = new HashMap<>();
 
     try {
       // TODO here we use the usecases from domain
-      result.put("result", "GET RESPONSE");
+      result.put("result", "DELETE RESPONSE");
       response.body(serialize(result));
     } catch (Exception e) {
       e.printStackTrace();
     }
-
     return response;
   }
 }
