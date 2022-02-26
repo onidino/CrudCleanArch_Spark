@@ -1,8 +1,8 @@
-ext {
-    sparkVersion = '2.9.3'
-    javaInject = '1'
-    junitJupiter = '5.8.2'
-    guice = "5.0.1"
-    gson = "2.8.9"
-    slf4j = "1.7.29"
+dependencies {
+    implementation 'org.apache.commons:commons-collections4:4.4'
+
+    // tests
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.mockito:mockito-core:4.2.0'
 }

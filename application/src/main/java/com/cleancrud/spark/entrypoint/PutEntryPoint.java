@@ -9,13 +9,13 @@ import spark.Request;
 import spark.Response;
 
 /**
- * GET entrypoint.
+ * PUT entrypoint.
  */
 @Singleton
-public class GetEntryPoint extends EntryPoint {
+public class PutEntryPoint extends EntryPoint {
 
   @Inject
-  public GetEntryPoint(JsonTransformer json) {
+  public PutEntryPoint(JsonTransformer json) {
     super(json);
   }
 
@@ -25,7 +25,7 @@ public class GetEntryPoint extends EntryPoint {
 
     try {
       // TODO here we use the usecases from domain
-      result.put("result", "GET RESPONSE");
+      result.put("result", "PUT RESPONSE");
       response.body(serialize(result));
     } catch (Exception e) {
       e.printStackTrace();

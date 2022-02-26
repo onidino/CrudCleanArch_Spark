@@ -2,23 +2,20 @@ dependencies {
     implementation project(':domain')
 
     // spark
-    implementation (group: 'com.sparkjava', name:'spark-core', version:"$sparkVersion"){
-        exclude(group: 'com.google.code.gson', module: 'gson')
-    }
+    implementation 'com.sparkjava:spark-core:2.9.3'
 
     // Guice
-    implementation("com.google.inject:guice:$guice"){
-        exclude group: 'aopalliance', module: 'aopalliance'
-    }
+    implementation 'com.google.inject:guice:5.0.1'
 
     // Gson
-    implementation group: 'com.google.code.gson', name: 'gson', version: "$gson"
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // Lombok
+    implementation 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     // logger
-    implementation group: 'org.slf4j', name: 'slf4j-simple', version: "$slf4j"
-
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiter"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiter"
+    implementation 'org.slf4j:slf4j-simple:1.7.32'
 }
 
 test {
