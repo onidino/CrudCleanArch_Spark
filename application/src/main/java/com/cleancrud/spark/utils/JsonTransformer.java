@@ -5,15 +5,15 @@ import spark.ResponseTransformer;
 
 public class JsonTransformer implements ResponseTransformer {
 
-    private final Gson gson = new Gson();
+  private final Gson gson = new Gson();
 
-    @Override
-    public String render(Object model) {
-        return gson.toJson(model);
-    }
+  @Override
+  public String render(Object model) {
+    return gson.toJson(model);
+  }
 
-    public <T> T toObject(String jsonString, Class<T> clazz) {
-        return gson.fromJson(jsonString, clazz);
-    }
+  public <T> T toObject(String jsonString, Class<T> clazz) {
+    return gson.fromJson(jsonString, clazz);
+  }
 }
 

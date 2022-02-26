@@ -2,7 +2,6 @@ package com.cleancrud.spark.module;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InjectorFactory {
@@ -15,7 +14,8 @@ public class InjectorFactory {
 
     public static Injector create() {
         return Guice.createInjector(
-                new EntryPointModule()
+            new EntryPointModule(),
+            new UseCaseModule()
         );
     }
 

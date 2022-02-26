@@ -1,14 +1,18 @@
 package com.cleancrud.spark.config;
 
+import static spark.Spark.after;
+import static spark.Spark.delete;
+import static spark.Spark.get;
+import static spark.Spark.path;
+import static spark.Spark.post;
+import static spark.Spark.put;
+
 import com.cleancrud.spark.entrypoint.impl.DeleteEntryPoint;
 import com.cleancrud.spark.entrypoint.impl.GetEntryPoint;
 import com.cleancrud.spark.entrypoint.impl.PostEntryPoint;
 import com.cleancrud.spark.entrypoint.impl.PutEntryPoint;
-import spark.RouteGroup;
-
 import javax.inject.Singleton;
-
-import static spark.Spark.*;
+import spark.RouteGroup;
 
 @Singleton
 public class MainRouter implements RouteGroup {
