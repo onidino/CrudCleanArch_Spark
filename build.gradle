@@ -17,23 +17,7 @@ allprojects {
 jacoco {
     toolVersion = '0.8.1'
 }
-
-jacocoTestReport {
-    reports {
-        csv.enabled = false
-        xml.enabled = false
-        html.enabled = true
-    }
-    afterEvaluate { // (optional) : to exclude classes / packages from coverage
-        classDirectories.from = files(classDirectories.files.collect {
-            fileTree(
-                    dir: it,
-                    exclude: ['snmaddula/sboot/crud/App.class', 'snmaddula/sboot/util/**'])
-        })
-    }
-}
-
-build.dependsOn jacocoTestReport
+// build.dependsOn jacocoTestReport
 
 configurations {
     childJars
