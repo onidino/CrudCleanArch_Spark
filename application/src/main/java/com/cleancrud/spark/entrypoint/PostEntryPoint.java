@@ -1,6 +1,5 @@
-package com.cleancrud.spark.entrypoint.impl;
+package com.cleancrud.spark.entrypoint;
 
-import com.cleancrud.spark.entrypoint.EntryPoint;
 import com.cleancrud.spark.utils.JsonTransformer;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,23 +9,23 @@ import spark.Request;
 import spark.Response;
 
 /**
- * PUT entrypoint.
+ * POST entrypoint.
  */
 @Singleton
-public class PutEntryPoint extends EntryPoint {
+public class PostEntryPoint extends EntryPoint {
 
   @Inject
-  public PutEntryPoint(JsonTransformer json) {
+  public PostEntryPoint(JsonTransformer json) {
     super(json);
   }
 
   @Override
-  protected Response internalHandle(Request request, Response response) {
+  public Response internalHandle(Request request, Response response) {
     Map<String, String> result = new HashMap<>();
 
     try {
       // TODO here we use the usecases from domain
-      result.put("result", "PUT RESPONSE");
+      result.put("result", "POST RESPONSE");
       response.body(serialize(result));
     } catch (Exception e) {
       e.printStackTrace();

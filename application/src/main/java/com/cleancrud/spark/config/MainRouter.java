@@ -7,10 +7,10 @@ import static spark.Spark.path;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
-import com.cleancrud.spark.entrypoint.impl.DeleteEntryPoint;
-import com.cleancrud.spark.entrypoint.impl.GetEntryPoint;
-import com.cleancrud.spark.entrypoint.impl.PostEntryPoint;
-import com.cleancrud.spark.entrypoint.impl.PutEntryPoint;
+import com.cleancrud.spark.entrypoint.DeleteEntryPoint;
+import com.cleancrud.spark.entrypoint.GetEntryPoint;
+import com.cleancrud.spark.entrypoint.PostEntryPoint;
+import com.cleancrud.spark.entrypoint.PutEntryPoint;
 import javax.inject.Singleton;
 import spark.RouteGroup;
 

@@ -43,7 +43,7 @@ public abstract class EntryPoint implements Route {
    * @param response the response
    * @return the response
    */
-  protected abstract Response internalHandle(Request request, Response response);
+  public abstract Response internalHandle(Request request, Response response);
 
   /**
    * JsonTransformer to transform object to json string
