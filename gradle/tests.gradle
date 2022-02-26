@@ -4,19 +4,20 @@ test {
 }
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
-}
 
-jacocoTestReport {
     reports {
         csv.enabled = false
         xml.enabled = false
         html.enabled = true
     }
-    afterEvaluate { // (optional) : to exclude classes / packages from coverage
-        classDirectories.from = files(classDirectories.files.collect {
-            fileTree(
-                    dir: it,
-                    exclude: ['snmaddula/sboot/crud/App.class', 'snmaddula/sboot/util/**'])
-        })
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [
+                            "**/config/*",
+                            "**/module/*"
+                    ])
+        }))
     }
 }
