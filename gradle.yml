@@ -21,4 +21,4 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         working-directory: ./src
-        run: ./gradlew build
+        run: ./gradlew build --scan
