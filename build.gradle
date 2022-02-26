@@ -17,7 +17,6 @@ allprojects {
 jacoco {
     toolVersion = '0.8.1'
 }
-// build.dependsOn jacocoTestReport
 
 configurations {
     childJars
