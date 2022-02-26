@@ -8,6 +8,7 @@
 name: Run Gradle on PRs
 
 on: pull_request
+
 jobs:
   run-tests:
     runs-on: ubuntu-latest
