@@ -47,7 +47,7 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-tasks.create(name: "testCoverage", type: JacocoReport, dependsOn: "test") {
+tasks.create(name: "jacocoTestReport", type: JacocoReport, dependsOn: "test") {
 
     group = "Reporting"
     description = "Generate Jacoco coverage reports for the test build."
