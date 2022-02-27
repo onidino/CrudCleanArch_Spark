@@ -21,7 +21,7 @@ public class GetRecordByIdUseCaseDefault implements GetRecordByIdUseCase {
   @Override
   public Record execute(Long id) throws UseCaseException {
     return getRecordRepository.execute(id)
-        .orElseThrow(() ->
-            new UseCaseException(String.format("GET: Record not found for id [%s]", id)));
+        .orElseThrow(() -> new UseCaseException(
+            String.format("GET: Record not found for id [%s]", id)));
   }
 }
