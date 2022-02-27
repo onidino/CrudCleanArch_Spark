@@ -21,7 +21,9 @@ jacocoTestReport {
             fileTree(dir: it,
                     exclude: [
                             "**/config/*",
-                            "**/module/*"
+                            "**/module/*",
+                            "**/utils/*",
+                            "**/entity/*"
                     ])
         }))
     }
