@@ -9,10 +9,12 @@ public class Application implements SparkApplication {
 
   private final MainRouter mainRouter;
   private final Server server;
+  private final MySqlDatabase mySqlDatabase;
 
   public Application() {
     this.mainRouter = new MainRouter();
     this.server = new Server();
+    this.mySqlDatabase = new MySqlDatabase();
   }
 
   @Override

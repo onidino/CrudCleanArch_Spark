@@ -15,7 +15,9 @@ public class InjectorFactory {
     public static Injector create() {
         return Guice.createInjector(
             new EntryPointModule(),
-            new UseCaseModule()
+            new UseCaseModule(),
+            new RepositoryModule(),
+            new DatabaseModule()
         );
     }
 
