@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import spark.Response;
+import use_cases.DeleteRecordByIdUseCase;
 import utils.BaseUnitTest;
 import utils.RequestMock;
 import utils.ResponseMock;
@@ -18,13 +20,16 @@ class DeleteEntryPointTest extends BaseUnitTest {
   private ResponseMock response;
   private final JsonTransformer jsonTransformer = new JsonTransformer();
 
+  @Mock
+  private DeleteRecordByIdUseCase deleteRecordByIdUseCase;
+
   @InjectMocks
   private DeleteEntryPoint deleteEntryPoint;
 
   @BeforeEach
   public void initMocks() {
     super.closeable = MockitoAnnotations.openMocks(this);
-    deleteEntryPoint = new DeleteEntryPoint(jsonTransformer);
+    deleteEntryPoint = new DeleteEntryPoint(deleteRecordByIdUseCase, jsonTransformer);
     request = new RequestMock();
     response = new ResponseMock();
   }

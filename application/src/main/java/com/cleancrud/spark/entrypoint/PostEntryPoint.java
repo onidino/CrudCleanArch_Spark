@@ -3,7 +3,6 @@ package com.cleancrud.spark.entrypoint;
 import com.cleancrud.spark.entrypoint.dto.RecordDto;
 import com.cleancrud.spark.entrypoint.mapper.RecordMapper;
 import com.cleancrud.spark.utils.JsonTransformer;
-import exception.UseCaseException;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import spark.Request;
@@ -34,15 +33,15 @@ public class PostEntryPoint extends EntryPoint {
       RecordDto recordData = deserialize(request.body(), RecordDto.class);
       RecordDto result = RecordMapper.entityToDto(
           createRecordUseCase.execute(recordData.getData()));
-
       response.body(serialize(result));
-    } catch (UseCaseException e) {
+    } catch (Exception e) {
       responseException(response, e);
     }
     return response;
   }
 
-  private boolean initialValidations(Request request, Response response) {
+  @Override
+  public boolean initialValidations(Request request, Response response) {
     try {
       Assert.notNull(request.body(), "body cant be empty");
       RecordDto recordDto = deserialize(request.body(), RecordDto.class);

@@ -57,6 +57,8 @@ public abstract class EntryPoint implements Route {
   }
 
 
+  protected abstract boolean initialValidations(Request request, Response response);
+
   /**
    * JsonTransformer to transform json string to object of class<T>
    *

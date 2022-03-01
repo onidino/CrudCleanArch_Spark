@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import spark.Response;
+import use_cases.UpdateRecordUseCase;
 import utils.BaseUnitTest;
 import utils.RequestMock;
 import utils.ResponseMock;
@@ -18,13 +20,16 @@ class PutEntryPointTest extends BaseUnitTest {
   private ResponseMock response;
   private final JsonTransformer jsonTransformer = new JsonTransformer();
 
+  @Mock
+  private UpdateRecordUseCase updateRecordUseCase;
+
   @InjectMocks
   private PutEntryPoint putEntryPoint;
 
   @BeforeEach
   public void initMocks() {
     super.closeable = MockitoAnnotations.openMocks(this);
-    putEntryPoint = new PutEntryPoint(jsonTransformer);
+    putEntryPoint = new PutEntryPoint(updateRecordUseCase, jsonTransformer);
     request = new RequestMock();
     response = new ResponseMock();
   }
