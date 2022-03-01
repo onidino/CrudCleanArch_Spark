@@ -3,11 +3,12 @@ package com.cleancrud.spark.entrypoint;
 import com.cleancrud.spark.entrypoint.dto.RecordDto;
 import com.cleancrud.spark.entrypoint.mapper.RecordMapper;
 import com.cleancrud.spark.utils.JsonTransformer;
-import java.util.Objects;
+import exception.UseCaseException;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import spark.Request;
 import spark.Response;
+import spark.utils.Assert;
 import use_cases.CreateRecordUseCase;
 
 /**
@@ -26,18 +27,31 @@ public class PostEntryPoint extends EntryPoint {
 
   @Override
   public Response internalHandle(Request request, Response response) {
-    Objects.requireNonNull(request.body(), "body cant be empty");
-    RecordDto recordData = deserialize(request.body(), RecordDto.class);
-
+    if (!initialValidations(request, response)) {
+      return response;
+    }
     try {
+      RecordDto recordData = deserialize(request.body(), RecordDto.class);
       RecordDto result = RecordMapper.entityToDto(
           createRecordUseCase.execute(recordData.getData()));
 
       response.body(serialize(result));
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (UseCaseException e) {
+      responseException(response, e);
     }
-
     return response;
   }
+
+  private boolean initialValidations(Request request, Response response) {
+    try {
+      Assert.notNull(request.body(), "body cant be empty");
+      RecordDto recordDto = deserialize(request.body(), RecordDto.class);
+      Assert.notNull(recordDto.getData(), "field 'data' in body cant be null");
+    } catch (IllegalArgumentException e) {
+      responseException(response, e);
+      return false;
+    }
+    return true;
+  }
+
 }

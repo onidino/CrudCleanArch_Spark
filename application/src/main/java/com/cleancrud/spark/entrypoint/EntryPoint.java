@@ -1,5 +1,6 @@
 package com.cleancrud.spark.entrypoint;
 
+import com.cleancrud.spark.entrypoint.dto.ResponseException;
 import com.cleancrud.spark.utils.JsonTransformer;
 import javax.inject.Inject;
 import org.eclipse.jetty.http.HttpStatus;
@@ -66,5 +67,14 @@ public abstract class EntryPoint implements Route {
    */
   protected <T> T deserialize(String jsonString, Class<T> clazz) {
     return json.toObject(jsonString, clazz);
+  }
+
+  protected Response responseException(Response response, Exception ex) {
+    response.body(serialize(
+        new ResponseException(
+            ex.getClass().toString(),
+            ex.getMessage())
+    ));
+    return response;
   }
 }
