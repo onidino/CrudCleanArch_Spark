@@ -26,7 +26,9 @@ public class DeleteRecordByIdUseCaseDefault implements DeleteRecordByIdUseCase {
   public void execute(Long id) throws UseCaseException {
     Record recordFound = getRecordByIdUseCase.execute(id);
 
-    Boolean recordDeleted = deleteRecordRepository.execute(recordFound.getId()).orElse(null);
+    Boolean recordDeleted = deleteRecordRepository.execute(recordFound.getId())
+        .orElse(null);
+
     if (recordDeleted == null || !recordDeleted) {
       throw new UseCaseException(
           String.format("DELETE: Could not delete record with id [%s]", id));

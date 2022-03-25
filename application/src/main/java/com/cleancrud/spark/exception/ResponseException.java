@@ -1,4 +1,4 @@
-package com.cleancrud.spark.entrypoint.dto;
+package com.cleancrud.spark.exception;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

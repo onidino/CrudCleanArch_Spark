@@ -6,16 +6,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import repository.PutRecordRepository;
 import use_cases.GetRecordByIdUseCase;
-import use_cases.UpdateRecordUseCase;
+import use_cases.UpdateRecordByIdUseCase;
 
 @Singleton
-public class UpdateRecordUseCaseDefault implements UpdateRecordUseCase {
+public class UpdateRecordByIdUseCaseDefault implements UpdateRecordByIdUseCase {
 
   private final GetRecordByIdUseCase getRecordByIdUseCase;
   private final PutRecordRepository putRecordRepository;
 
   @Inject
-  public UpdateRecordUseCaseDefault(
+  public UpdateRecordByIdUseCaseDefault(
       final GetRecordByIdUseCase getRecordByIdUseCase,
       final PutRecordRepository putRecordRepository) {
     this.getRecordByIdUseCase = getRecordByIdUseCase;

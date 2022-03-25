@@ -1,7 +1,12 @@
 package com.cleancrud.spark.entrypoint.impl;
 
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
+
 import com.cleancrud.spark.entrypoint.GetEntryPoint;
 import com.cleancrud.spark.utils.JsonTransformer;
+import entity.Record;
+import exception.UseCaseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,10 +40,27 @@ class GetEntryPointTest extends BaseUnitTest {
   }
 
   @Test
-  void whenPutRequestThenOk() {
+  void whenGetRequestThenOk() throws UseCaseException {
+    request.addParam("id", "1234");
+    when(getRecordByIdUseCase.execute(anyLong()))
+        .thenReturn(new Record(1234L, "test"));
+
     Response result = getEntryPoint.internalHandle(request, response);
 
     Assertions.assertNotNull(result);
-    Assertions.assertEquals("{\"result\":\"GET RESPONSE\"}", result.body());
+    Assertions.assertEquals("{\"id\":1234,\"data\":\"test\"}", result.body());
+  }
+
+  @Test
+  void whenGetRequestThenThrowsException() throws UseCaseException {
+    request.addParam("id", "1234");
+    when(getRecordByIdUseCase.execute(anyLong()))
+        .thenThrow(new UseCaseException("GET: Record not found for id [1234]"));
+
+    Response result = getEntryPoint.internalHandle(request, response);
+
+    Assertions.assertEquals(
+        "{\"exception\":\"class exception.UseCaseException\",\"message\":\"GET: Record not found for id [1234]\"}",
+        result.body());
   }
 }

@@ -19,7 +19,7 @@ import repository.PutRecordRepository;
 import use_cases.GetRecordByIdUseCase;
 import utils.BaseUnitTest;
 
-class UpdateRecordUseCaseDefaultTest extends BaseUnitTest {
+class UpdateRecordByIdUseCaseDefaultTest extends BaseUnitTest {
 
   private static final Long ID = 1L;
   private static final String DATA = "update_test";
@@ -31,7 +31,7 @@ class UpdateRecordUseCaseDefaultTest extends BaseUnitTest {
   private PutRecordRepository putRecordRepository;
 
   @InjectMocks
-  private UpdateRecordUseCaseDefault updateRecordUseCaseDefault;
+  private UpdateRecordByIdUseCaseDefault updateRecordUseCaseDefault;
 
   @BeforeEach
   public void initMocks() {

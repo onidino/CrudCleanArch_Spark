@@ -26,7 +26,7 @@ public class PostEntryPoint extends EntryPoint {
 
   @Override
   public Response internalHandle(Request request, Response response) {
-    if (!initialValidations(request, response)) {
+    if (!entryValidations(request, response)) {
       return response;
     }
     try {
@@ -41,11 +41,11 @@ public class PostEntryPoint extends EntryPoint {
   }
 
   @Override
-  public boolean initialValidations(Request request, Response response) {
+  public boolean entryValidations(Request request, Response response) {
     try {
       Assert.notNull(request.body(), "body cant be empty");
       RecordDto recordDto = deserialize(request.body(), RecordDto.class);
-      Assert.notNull(recordDto.getData(), "field 'data' in body cant be null");
+      Assert.notNull(recordDto.getData(), "field data in body cant be null");
     } catch (IllegalArgumentException e) {
       responseException(response, e);
       return false;

@@ -35,8 +35,13 @@ public class RequestMock extends Request {
     return queryParams.keySet();
   }
 
-  public Map<String, String> getParam() {
-    return param;
+  @Override
+  public String params(String key) {
+    return this.param.get(key);
+  }
+
+  public String addParam(String key, String value) {
+    return this.param.put(key, value);
   }
 
   public void status(int status) {

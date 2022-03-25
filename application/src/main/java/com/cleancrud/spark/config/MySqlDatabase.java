@@ -43,6 +43,8 @@ public class MySqlDatabase {
     dataSource.setPassword(password);
     this.sql2o = new Sql2o(dataSource);
 
+    LOGGER.info(String.format("DATABASE: %s", urlConfig));
+
     return dataSource;
   }
 

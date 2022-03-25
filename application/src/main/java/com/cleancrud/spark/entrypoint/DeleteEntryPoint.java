@@ -25,11 +25,11 @@ public class DeleteEntryPoint extends EntryPoint {
 
   @Override
   public Response internalHandle(Request request, Response response) {
-    if (!initialValidations(request, response)) {
+    if (!entryValidations(request, response)) {
       return response;
     }
     try {
-      Long recordId = deserialize(request.body(), Long.class);
+      Long recordId = Long.valueOf(request.params("id"));
       deleteRecordByIdUseCase.execute(recordId);
     } catch (Exception e) {
       responseException(response, e);
@@ -38,7 +38,7 @@ public class DeleteEntryPoint extends EntryPoint {
   }
 
   @Override
-  public boolean initialValidations(Request request, Response response) {
+  public boolean entryValidations(Request request, Response response) {
     try {
       Assert.notNull(request.params("id"), "id cant be null");
     } catch (IllegalArgumentException e) {

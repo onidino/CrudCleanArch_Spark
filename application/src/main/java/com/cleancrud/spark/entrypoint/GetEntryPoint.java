@@ -26,13 +26,12 @@ public class GetEntryPoint extends EntryPoint {
 
   @Override
   public Response internalHandle(Request request, Response response) {
-    if (!initialValidations(request, response)) {
+    if (!entryValidations(request, response)) {
       return response;
     }
     try {
-      Long recordId = deserialize(request.body(), Long.class);
-      RecordDto result = RecordMapper.entityToDto(
-          getRecordByIdUseCase.execute(recordId));
+      Long recordId = Long.valueOf(request.params("id"));
+      RecordDto result = RecordMapper.entityToDto(getRecordByIdUseCase.execute(recordId));
       response.body(serialize(result));
     } catch (Exception e) {
       responseException(response, e);
@@ -42,7 +41,7 @@ public class GetEntryPoint extends EntryPoint {
   }
 
   @Override
-  public boolean initialValidations(Request request, Response response) {
+  public boolean entryValidations(Request request, Response response) {
     try {
       Assert.notNull(request.params("id"), "id cant be null");
     } catch (IllegalArgumentException e) {

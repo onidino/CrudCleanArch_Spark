@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 import spark.Request;
 import spark.Response;
 import spark.utils.Assert;
-import use_cases.UpdateRecordUseCase;
+import use_cases.UpdateRecordByIdUseCase;
 
 /**
  * PUT entrypoint.
@@ -16,23 +16,25 @@ import use_cases.UpdateRecordUseCase;
 @Singleton
 public class PutEntryPoint extends EntryPoint {
 
-  private final UpdateRecordUseCase updateRecordUseCase;
+  private final UpdateRecordByIdUseCase updateRecordByIdUseCase;
 
   @Inject
-  public PutEntryPoint(final UpdateRecordUseCase updateRecordUseCase, JsonTransformer json) {
+  public PutEntryPoint(final UpdateRecordByIdUseCase updateRecordByIdUseCase,
+      final JsonTransformer json) {
     super(json);
-    this.updateRecordUseCase = updateRecordUseCase;
+    this.updateRecordByIdUseCase = updateRecordByIdUseCase;
   }
 
   @Override
   public Response internalHandle(Request request, Response response) {
-    if (!initialValidations(request, response)) {
+    if (!entryValidations(request, response)) {
       return response;
     }
     try {
+      Long recordId = Long.valueOf(request.params("id"));
       RecordDto recordDto = deserialize(request.body(), RecordDto.class);
       RecordDto result = RecordMapper.entityToDto(
-          updateRecordUseCase.execute(recordDto.getId(), recordDto.getData()));
+          updateRecordByIdUseCase.execute(recordId, recordDto.getData()));
       response.body(serialize(result));
     } catch (Exception e) {
       responseException(response, e);
@@ -42,12 +44,12 @@ public class PutEntryPoint extends EntryPoint {
   }
 
   @Override
-  public boolean initialValidations(Request request, Response response) {
+  public boolean entryValidations(Request request, Response response) {
     try {
       Assert.notNull(request.params("id"), "id cant be null");
       Assert.notNull(request.body(), "body cant be empty");
       RecordDto recordDto = deserialize(request.body(), RecordDto.class);
-      Assert.notNull(recordDto.getData(), "field 'data' in body cant be null");
+      Assert.notNull(recordDto.getData(), "field data in body cant be null");
     } catch (IllegalArgumentException e) {
       responseException(response, e);
       return false;
