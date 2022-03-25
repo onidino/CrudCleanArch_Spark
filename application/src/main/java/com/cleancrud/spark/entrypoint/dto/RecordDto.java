@@ -12,8 +12,8 @@ public class RecordDto {
 
   @JsonCreator
   public RecordDto(
-      @JsonProperty("id") Long id,
-      @JsonProperty("data") String data) {
+      @JsonProperty("id") final Long id,
+      @JsonProperty("data") final String data) {
     this.id = id;
     this.data = data;
   }

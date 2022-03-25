@@ -10,4 +10,5 @@ public class GetRecordRepositoryDefault implements GetRecordRepository {
   public Optional<Record> execute(Long id) {
     return Optional.empty();
   }
+
 }
