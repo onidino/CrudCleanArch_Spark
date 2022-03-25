@@ -10,18 +10,11 @@ public class RecordMapper {
   private RecordMapper() {
   }
 
-  public static RecordDto entityToDto(Record record) {
+  public static RecordDto entityToDto(Record recordEntity) {
     return new RecordDto(
-        record.getId(),
-        record.getData()
+        recordEntity.getId(),
+        recordEntity.getData()
     );
-  }
-
-  public static Record dtoToEntity(RecordDto recordDto) {
-    return Record.builder()
-        .id(recordDto.getId())
-        .data(recordDto.getData())
-        .build();
   }
 
 }

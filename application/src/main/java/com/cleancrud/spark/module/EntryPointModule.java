@@ -8,11 +8,11 @@ import com.google.inject.AbstractModule;
 
 public class EntryPointModule extends AbstractModule {
 
-    @Override
-    protected void configure() {
-        bind(GetEntryPoint.class);
-        bind(PostEntryPoint.class);
-        bind(PutEntryPoint.class);
-        bind(DeleteEntryPoint.class);
-    }
+  @Override
+  protected void configure() {
+    bind(GetEntryPoint.class);
+    bind(PostEntryPoint.class);
+    bind(PutEntryPoint.class);
+    bind(DeleteEntryPoint.class);
+  }
 }

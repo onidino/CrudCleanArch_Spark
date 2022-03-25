@@ -6,26 +6,26 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class InjectorFactory {
 
-    private static final String INJECTORS_KEY = "INJECTORS";
-    private static final ConcurrentHashMap<String, Injector> injectors = new ConcurrentHashMap<>();
+  private static final String INJECTORS_KEY = "INJECTORS";
+  private static final ConcurrentHashMap<String, Injector> injectors = new ConcurrentHashMap<>();
 
-    private InjectorFactory() {
-    }
+  private InjectorFactory() {
+  }
 
-    public static Injector create() {
-        return Guice.createInjector(
-            new EntryPointModule(),
-            new UseCaseModule(),
-            new RepositoryModule(),
-            new DatabaseModule()
-        );
-    }
+  public static Injector create() {
+    return Guice.createInjector(
+        new EntryPointModule(),
+        new UseCaseModule(),
+        new RepositoryModule(),
+        new DatabaseModule()
+    );
+  }
 
-    public static void addInjectors() {
-        injectors.put(INJECTORS_KEY, create());
-    }
+  public static void addInjectors() {
+    injectors.put(INJECTORS_KEY, create());
+  }
 
-    public static Injector getInjector() {
-        return injectors.get(INJECTORS_KEY);
-    }
+  public static Injector getInjector() {
+    return injectors.get(INJECTORS_KEY);
+  }
 }

@@ -27,6 +27,10 @@ public class RequestMock extends Request {
     return body;
   }
 
+  public void body(String body) {
+    this.body = body;
+  }
+
   public Map<String, Object> attribute() {
     return attribute;
   }
@@ -35,21 +39,21 @@ public class RequestMock extends Request {
     return queryParams.keySet();
   }
 
+  public void queryParams(Map<String, String> queryParams) {
+    this.queryParams = queryParams;
+  }
+
   @Override
   public String params(String key) {
     return this.param.get(key);
   }
 
-  public String addParam(String key, String value) {
-    return this.param.put(key, value);
+  public void addParam(String key, String value) {
+    this.param.put(key, value);
   }
 
   public void status(int status) {
     this.status = status;
-  }
-
-  public void body(String body) {
-    this.body = body;
   }
 
   public void attribute(String attribute, Object value) {
@@ -58,9 +62,5 @@ public class RequestMock extends Request {
 
   public Map<String, Object> attribute(String attribute) {
     return this.attribute != null ? this.attribute : Map.of();
-  }
-
-  public void queryParams(Map<String, String> queryParams) {
-    this.queryParams = queryParams;
   }
 }
