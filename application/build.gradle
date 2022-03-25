@@ -20,6 +20,7 @@ dependencies {
 
     // sql2o
     implementation 'org.sql2o:sql2o:1.6.0'
+    testImplementation 'org.hsqldb:hsqldb:2.4.0'
 
     // mysql
     implementation 'mysql:mysql-connector-java:8.0.25'

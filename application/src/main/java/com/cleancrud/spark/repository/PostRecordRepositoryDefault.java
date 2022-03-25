@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.sql.DataSource;
 import org.sql2o.Connection;
+import org.sql2o.Query;
 import org.sql2o.Sql2o;
 import repository.PostRecordRepository;
 
@@ -27,14 +28,19 @@ public class PostRecordRepositoryDefault implements PostRecordRepository {
 
   @Override
   public Optional<Long> execute(Record recordToSave) {
+    Optional<Long> recordId;
+
     try (Connection conn = sql2o.beginTransaction()) {
-      Optional<Long> recordId = Optional.of(
-          conn.createQuery(INSERT)
-              .addParameter(RECORD_DATA, recordToSave.getData())
-              .executeUpdate()
-              .getKey(Long.class));
-      conn.commit();
-      return recordId;
+      try (Query queryToExecute = conn.createQuery(INSERT)) {
+        recordId = Optional.of(queryToExecute
+            .addParameter(RECORD_DATA, recordToSave.getData())
+            .executeUpdate()
+            .getKey(Long.class));
+        conn.commit();
+
+        return recordId;
+      }
     }
   }
+
 }
