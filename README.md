@@ -56,6 +56,7 @@ The specific parameters for the database configuration can be found at:
 - *application/src/main/resources/database.properties*
 
 TEST EXAMPLES
+
 ![img_1.png](img_1.png)
 
 TESTING
