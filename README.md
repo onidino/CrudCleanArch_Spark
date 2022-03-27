@@ -49,12 +49,14 @@ IMPORTANT: DATABASE STRUCTURE
 ------------------------------------------------------------------------------------------------------------------------
 To test the api locally you should create a mySQL database and create a simple "record" table with
 the structure similar to the one in the script found in:
-- *"database/scripts/create_record_table"*
+- *database/scripts/create_record_table*
 
 The specific parameters for the database configuration can be found at:
-- *"application/src/main/resources/database.properties"*
 
-  ![img.png](img.png)
+- *application/src/main/resources/database.properties*
+
+TEST EXAMPLES
+![img_1.png](img_1.png)
 
 TESTING
 ------------------------------------------------------------------------------------------------------------------------
