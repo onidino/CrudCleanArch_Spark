@@ -4,21 +4,20 @@ SPARK + CLEAN ARCHITECTURE + mySQL DATABASE:
 ------------------------------------------------------------------------------------------------------------------------
 A simple REST-API with SPARK using the Clean Architecture assure the implementation of the SOLID principles and with mySQL database with DOCKER.
 
-SPARK:
+*SPARK:*
 https://sparkjava.com/
 
-SOLID PRINCIPLES:
+*SOLID PRINCIPLES:*
 https://www.baeldung.com/solid-principles
 
-CLEAN ARCHITECTURE:
+*CLEAN ARCHITECTURE:*
 https://medium.com/slalom-build/clean-architecture-with-java-11-f78bba431041
 
-DATABASE:
+*DATABASE:*
 The SQL2O library was used to manage sql transactions.
 https://www.baeldung.com/java-sql2o
 
 
-------------------------------------------------------------------------------------------------------------------------
 BASIC FUNCTIONING
 ------------------------------------------------------------------------------------------------------------------------
 The project has CRUD operations implemented in 4 entrypoints for POST, GET, PUT, DELETE.
@@ -47,7 +46,6 @@ curl --request DELETE \
   --url http://localhost:8080/clean/spark/delete/ID
 
 
-------------------------------------------------------------------------------------------------------------------------
 TESTING
 ------------------------------------------------------------------------------------------------------------------------
 Jupiter (Junit) was used for making the tests, and HSQL for database tests.
