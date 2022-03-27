@@ -1,5 +1,6 @@
 package com.cleancrud.spark.entrypoint;
 
+import com.cleancrud.spark.exception.ResponseException;
 import com.cleancrud.spark.utils.JsonTransformer;
 import javax.inject.Inject;
 import org.eclipse.jetty.http.HttpStatus;
@@ -30,10 +31,11 @@ public abstract class EntryPoint implements Route {
     final String logMsg = String.format("request: %s - %s", request.requestMethod(), request.uri());
     LOGGER.info(logMsg);
 
+    response = internalHandle(request, response);
     response.type("application/json");
     response.status(HttpStatus.OK_200);
 
-    return internalHandle(request, response);
+    return response;
   }
 
   /**
@@ -46,7 +48,7 @@ public abstract class EntryPoint implements Route {
   public abstract Response internalHandle(Request request, Response response);
 
   /**
-   * JsonTransformer to transform object to json string
+   * JsonTransformer to transform object to json string.
    *
    * @param object the object to serialize
    * @return the json string
@@ -55,6 +57,14 @@ public abstract class EntryPoint implements Route {
     return json.render(object);
   }
 
+  /**
+   * Method for initial validations for entrypoints.
+   *
+   * @param request  the request with the params to validate
+   * @param response response with the exception information in case of error
+   * @return true/false
+   */
+  protected abstract boolean entryValidations(Request request, Response response);
 
   /**
    * JsonTransformer to transform json string to object of class<T>
@@ -66,5 +76,13 @@ public abstract class EntryPoint implements Route {
    */
   protected <T> T deserialize(String jsonString, Class<T> clazz) {
     return json.toObject(jsonString, clazz);
+  }
+
+  protected void responseException(Response response, Exception ex) {
+    response.body(serialize(
+        new ResponseException(
+            ex.getClass().toString(),
+            ex.getMessage())
+    ));
   }
 }

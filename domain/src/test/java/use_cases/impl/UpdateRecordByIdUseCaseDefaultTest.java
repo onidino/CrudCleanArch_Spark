@@ -19,7 +19,7 @@ import repository.PutRecordRepository;
 import use_cases.GetRecordByIdUseCase;
 import utils.BaseUnitTest;
 
-class UpdateRecordUseCaseDefaultTest extends BaseUnitTest {
+class UpdateRecordByIdUseCaseDefaultTest extends BaseUnitTest {
 
   private static final Long ID = 1L;
   private static final String DATA = "update_test";
@@ -31,7 +31,7 @@ class UpdateRecordUseCaseDefaultTest extends BaseUnitTest {
   private PutRecordRepository putRecordRepository;
 
   @InjectMocks
-  private UpdateRecordUseCaseDefault updateRecordUseCaseDefault;
+  private UpdateRecordByIdUseCaseDefault updateRecordUseCaseDefault;
 
   @BeforeEach
   public void initMocks() {
@@ -43,12 +43,12 @@ class UpdateRecordUseCaseDefaultTest extends BaseUnitTest {
     // given
     Record recordFound = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     Record recordUpdated = Record.builder()
         .id(1L)
-        .data("create_updated")
+        .recordData("create_updated")
         .build();
 
     // when
@@ -61,7 +61,7 @@ class UpdateRecordUseCaseDefaultTest extends BaseUnitTest {
     // asserts
     Assertions.assertNotNull(result);
     Assertions.assertEquals(recordUpdated.getId(), result.getId());
-    Assertions.assertEquals(recordUpdated.getData(), result.getData());
+    Assertions.assertEquals(recordUpdated.getRecordData(), result.getRecordData());
 
     Mockito.verify(getRecordByIdUseCase, times(1)).execute(any());
     Mockito.verify(putRecordRepository, times(1)).execute(any());
@@ -72,7 +72,7 @@ class UpdateRecordUseCaseDefaultTest extends BaseUnitTest {
     // given
     Record recordFound = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     // when

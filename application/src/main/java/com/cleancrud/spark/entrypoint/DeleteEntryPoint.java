@@ -1,12 +1,12 @@
 package com.cleancrud.spark.entrypoint;
 
 import com.cleancrud.spark.utils.JsonTransformer;
-import java.util.HashMap;
-import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import spark.Request;
 import spark.Response;
+import spark.utils.Assert;
+import use_cases.DeleteRecordByIdUseCase;
 
 /**
  * DELETE entrypoint.
@@ -14,22 +14,37 @@ import spark.Response;
 @Singleton
 public class DeleteEntryPoint extends EntryPoint {
 
+  private final DeleteRecordByIdUseCase deleteRecordByIdUseCase;
+
   @Inject
-  public DeleteEntryPoint(JsonTransformer json) {
+  public DeleteEntryPoint(
+      final DeleteRecordByIdUseCase deleteRecordByIdUseCase, JsonTransformer json) {
     super(json);
+    this.deleteRecordByIdUseCase = deleteRecordByIdUseCase;
   }
 
   @Override
   public Response internalHandle(Request request, Response response) {
-    Map<String, String> result = new HashMap<>();
-
+    if (!entryValidations(request, response)) {
+      return response;
+    }
     try {
-      // TODO here we use the usecases from domain
-      result.put("result", "DELETE RESPONSE");
-      response.body(serialize(result));
+      Long recordId = Long.valueOf(request.params("id"));
+      deleteRecordByIdUseCase.execute(recordId);
     } catch (Exception e) {
-      e.printStackTrace();
+      responseException(response, e);
     }
     return response;
+  }
+
+  @Override
+  public boolean entryValidations(Request request, Response response) {
+    try {
+      Assert.notNull(request.params("id"), "id cant be null");
+    } catch (IllegalArgumentException e) {
+      responseException(response, e);
+      return false;
+    }
+    return true;
   }
 }

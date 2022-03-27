@@ -1,12 +1,14 @@
 package com.cleancrud.spark.entrypoint;
 
+import com.cleancrud.spark.entrypoint.dto.RecordDto;
+import com.cleancrud.spark.entrypoint.mapper.RecordMapper;
 import com.cleancrud.spark.utils.JsonTransformer;
-import java.util.HashMap;
-import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import spark.Request;
 import spark.Response;
+import spark.utils.Assert;
+import use_cases.GetRecordByIdUseCase;
 
 /**
  * GET entrypoint.
@@ -14,23 +16,38 @@ import spark.Response;
 @Singleton
 public class GetEntryPoint extends EntryPoint {
 
+  private final GetRecordByIdUseCase getRecordByIdUseCase;
+
   @Inject
-  public GetEntryPoint(JsonTransformer json) {
+  public GetEntryPoint(final GetRecordByIdUseCase getRecordByIdUseCase, JsonTransformer json) {
     super(json);
+    this.getRecordByIdUseCase = getRecordByIdUseCase;
   }
 
   @Override
   public Response internalHandle(Request request, Response response) {
-    Map<String, String> result = new HashMap<>();
-
+    if (!entryValidations(request, response)) {
+      return response;
+    }
     try {
-      // TODO here we use the usecases from domain
-      result.put("result", "GET RESPONSE");
+      Long recordId = Long.valueOf(request.params("id"));
+      RecordDto result = RecordMapper.entityToDto(getRecordByIdUseCase.execute(recordId));
       response.body(serialize(result));
     } catch (Exception e) {
-      e.printStackTrace();
+      responseException(response, e);
     }
 
     return response;
+  }
+
+  @Override
+  public boolean entryValidations(Request request, Response response) {
+    try {
+      Assert.notNull(request.params("id"), "id cant be null");
+    } catch (IllegalArgumentException e) {
+      responseException(response, e);
+      return false;
+    }
+    return true;
   }
 }

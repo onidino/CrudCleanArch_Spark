@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class Server {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
+
   private static final String SERVER_PROPERTIES = "server";
   private static final String SERVER_PORT = "server.port";
   private static final String SERVER_ADDRESS = "server.address";

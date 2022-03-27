@@ -6,16 +6,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import repository.PutRecordRepository;
 import use_cases.GetRecordByIdUseCase;
-import use_cases.UpdateRecordUseCase;
+import use_cases.UpdateRecordByIdUseCase;
 
 @Singleton
-public class UpdateRecordUseCaseDefault implements UpdateRecordUseCase {
+public class UpdateRecordByIdUseCaseDefault implements UpdateRecordByIdUseCase {
 
   private final GetRecordByIdUseCase getRecordByIdUseCase;
   private final PutRecordRepository putRecordRepository;
 
   @Inject
-  public UpdateRecordUseCaseDefault(
+  public UpdateRecordByIdUseCaseDefault(
       final GetRecordByIdUseCase getRecordByIdUseCase,
       final PutRecordRepository putRecordRepository) {
     this.getRecordByIdUseCase = getRecordByIdUseCase;
@@ -25,7 +25,7 @@ public class UpdateRecordUseCaseDefault implements UpdateRecordUseCase {
   @Override
   public Record execute(Long id, String data) throws UseCaseException {
     Record recordToUpdate = getRecordByIdUseCase.execute(id);
-    recordToUpdate.setData(data);
+    recordToUpdate.setRecordData(data);
 
     return putRecordRepository.execute(recordToUpdate)
         .orElseThrow(() -> new UseCaseException(
