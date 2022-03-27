@@ -5,17 +5,17 @@ SPARK JAVA + CLEAN ARCHITECTURE + mySQL DATABASE:
 ------------------------------------------------------------------------------------------------------------------------
 A simple Java REST-API with SPARK using the Clean Architecture assure the implementation of the SOLID principles and with mySQL database with DOCKER.
 
-*SPARK:*
-https://sparkjava.com/
+- *SPARK:*
+  https://sparkjava.com/
 
-*SOLID PRINCIPLES:*
-https://www.baeldung.com/solid-principles
+- *SOLID PRINCIPLES:*
+  https://www.baeldung.com/solid-principles
 
-*CLEAN ARCHITECTURE:*
-https://medium.com/slalom-build/clean-architecture-with-java-11-f78bba431041
+- *CLEAN ARCHITECTURE:*
+  https://medium.com/slalom-build/clean-architecture-with-java-11-f78bba431041
 
-*MYSQL DATABASE - sql2o library:*
-https://www.baeldung.com/java-sql2o
+- *MYSQL DATABASE - sql2o library:*
+  https://www.baeldung.com/java-sql2o
 
 
 BASIC FUNCTIONING
