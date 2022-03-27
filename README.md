@@ -14,9 +14,8 @@ https://www.baeldung.com/solid-principles
 *CLEAN ARCHITECTURE:*
 https://medium.com/slalom-build/clean-architecture-with-java-11-f78bba431041
 
-*DATABASE:*
+*MYSQL DATABASE - sql2o library:*
 https://www.baeldung.com/java-sql2o
-The SQL2O library was used to manage sql transactions.
 
 
 BASIC FUNCTIONING
