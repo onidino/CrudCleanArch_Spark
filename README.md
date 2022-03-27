@@ -29,7 +29,7 @@ curl --request POST \
   --url http://localhost:8080/clean/spark/create \
   --header 'Content-Type: application/json' \
   --data '{
-	"data" : null
+	"record_data" : null
 }'
 
 curl --request GET \
@@ -40,7 +40,7 @@ curl --request PUT \
   --url http://localhost:8080/clean/spark/update/ID \
   --header 'Content-Type: application/json' \
   --data '{
-	"data" : null
+	"record_data" : null
 }'
 
 curl --request DELETE \
