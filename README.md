@@ -31,26 +31,26 @@ In this way we separate the database and entrypoiny logics in the application la
 
 - ENDPOINTS FOR CRUD:
 
-curl --request POST \
-  --url http://localhost:8080/clean/spark/create \
-  --header 'Content-Type: application/json' \
-  --data '{
-	"record_data" : null
-}'
+	curl --request POST \
+	  --url http://localhost:8080/clean/spark/create \
+	  --header 'Content-Type: application/json' \
+	  --data '{
+		"record_data" : null
+	}'
 
-curl --request GET \
-  --url http://localhost:8080/clean/spark/read/ID \
-  --header 'Content-Type: application/json'
-  
-curl --request PUT \
-  --url http://localhost:8080/clean/spark/update/ID \
-  --header 'Content-Type: application/json' \
-  --data '{
-	"record_data" : null
-}'
+	curl --request GET \
+	  --url http://localhost:8080/clean/spark/read/ID \
+	  --header 'Content-Type: application/json'
 
-curl --request DELETE \
-  --url http://localhost:8080/clean/spark/delete/ID
+	curl --request PUT \
+	  --url http://localhost:8080/clean/spark/update/ID \
+	  --header 'Content-Type: application/json' \
+	  --data '{
+		"record_data" : null
+	}'
+
+	curl --request DELETE \
+	  --url http://localhost:8080/clean/spark/delete/ID
 
 
 TESTING
