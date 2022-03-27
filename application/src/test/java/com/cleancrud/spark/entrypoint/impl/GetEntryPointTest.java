@@ -7,6 +7,7 @@ import com.cleancrud.spark.entrypoint.GetEntryPoint;
 import com.cleancrud.spark.utils.JsonTransformer;
 import entity.Record;
 import exception.UseCaseException;
+import org.eclipse.jetty.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,6 +53,17 @@ class GetEntryPointTest extends BaseUnitTest {
   }
 
   @Test
+  void whenGetRequestWithIdNullThenThrowsException() {
+    request.addParam("id", null);
+
+    Response result = getEntryPoint.internalHandle(request, response);
+
+    Assertions.assertEquals(
+        "{\"exception\":\"class java.lang.IllegalArgumentException\",\"message\":\"id cant be null\"}",
+        result.body());
+  }
+
+  @Test
   void whenGetRequestThenThrowsException() throws UseCaseException {
     request.addParam("id", "1234");
     when(getRecordByIdUseCase.execute(anyLong()))
@@ -62,5 +74,22 @@ class GetEntryPointTest extends BaseUnitTest {
     Assertions.assertEquals(
         "{\"exception\":\"class exception.UseCaseException\",\"message\":\"GET: Record not found for id [1234]\"}",
         result.body());
+  }
+
+  @Test
+  void whenGetRequestThenEntryPointHandleTestOk() throws UseCaseException {
+    request.setRequestMethod("GET");
+    request.setUri("test_uri");
+    request.addParam("id", "1234");
+
+    when(getRecordByIdUseCase.execute(anyLong()))
+        .thenReturn(new Record(1234L, "test"));
+
+    Response result = getEntryPoint.handle(request, response);
+
+    Assertions.assertNotNull(result);
+    Assertions.assertEquals(HttpStatus.OK_200, result.status());
+    Assertions.assertEquals("application/json", result.type());
+    Assertions.assertEquals("{\"id\":1234,\"data\":\"test\"}", result.body());
   }
 }

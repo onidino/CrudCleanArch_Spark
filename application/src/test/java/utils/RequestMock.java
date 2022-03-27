@@ -9,6 +9,8 @@ public class RequestMock extends Request {
 
   private int status;
   private String body;
+  private String method;
+  private String uri;
   private Map<String, Object> attribute;
   private Map<String, String> queryParams;
   private final Map<String, String> param;
@@ -41,6 +43,24 @@ public class RequestMock extends Request {
 
   public void queryParams(Map<String, String> queryParams) {
     this.queryParams = queryParams;
+  }
+
+  public void setRequestMethod(String method) {
+    this.method = method;
+  }
+
+  @Override
+  public String requestMethod() {
+    return this.method;
+  }
+
+  public void setUri(String uri) {
+    this.uri = uri;
+  }
+
+  @Override
+  public String uri() {
+    return this.uri;
   }
 
   @Override

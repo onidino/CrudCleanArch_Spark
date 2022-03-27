@@ -53,6 +53,18 @@ class DeleteEntryPointTest extends BaseUnitTest {
   }
 
   @Test
+  void whenDeleteWithNullIdRequestThenOk() {
+    request.addParam("id", null);
+
+    Response result = deleteEntryPoint.internalHandle(request, response);
+
+    Assertions.assertEquals(
+        "{\"exception\":\"class java.lang.IllegalArgumentException\",\"message\":\"id cant be null\"}",
+        result.body());
+  }
+
+
+  @Test
   void whenDeleteRequestThenThrowsException() throws UseCaseException {
     request.addParam("id", "1234");
 
