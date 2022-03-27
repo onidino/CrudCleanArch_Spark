@@ -57,4 +57,4 @@ TESTING
 ------------------------------------------------------------------------------------------------------------------------
 Jupiter (Junit) was used for making unit tests and HSQL for database tests.
 
-HSQL: https://www.baeldung.com/java-in-memory-databases
+- HSQL: https://www.baeldung.com/java-in-memory-databases
