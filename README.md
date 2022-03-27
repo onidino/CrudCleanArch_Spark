@@ -45,7 +45,7 @@ curl --request DELETE \
 --url http://localhost:8080/clean/spark/delete/ID
 
 
-IMPORTANTE: DATABASE STRUCTURE
+IMPORTANT: DATABASE STRUCTURE
 ------------------------------------------------------------------------------------------------------------------------
 To test the api locally you should create a mySQL database and create a simple "record" table with
 the structure similar to the one in the script found in:
