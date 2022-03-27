@@ -32,7 +32,7 @@ public class PostEntryPoint extends EntryPoint {
     try {
       RecordDto recordData = deserialize(request.body(), RecordDto.class);
       RecordDto result = RecordMapper.entityToDto(
-          createRecordUseCase.execute(recordData.getData()));
+          createRecordUseCase.execute(recordData.getRecordData()));
       response.body(serialize(result));
     } catch (Exception e) {
       responseException(response, e);
@@ -45,7 +45,7 @@ public class PostEntryPoint extends EntryPoint {
     try {
       Assert.notNull(request.body(), "body cant be empty");
       RecordDto recordDto = deserialize(request.body(), RecordDto.class);
-      Assert.notNull(recordDto.getData(), "field data in body cant be null");
+      Assert.notNull(recordDto.getRecordData(), "field data in body cant be null");
     } catch (IllegalArgumentException e) {
       responseException(response, e);
       return false;

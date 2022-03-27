@@ -43,12 +43,12 @@ class UpdateRecordByIdUseCaseDefaultTest extends BaseUnitTest {
     // given
     Record recordFound = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     Record recordUpdated = Record.builder()
         .id(1L)
-        .data("create_updated")
+        .recordData("create_updated")
         .build();
 
     // when
@@ -61,7 +61,7 @@ class UpdateRecordByIdUseCaseDefaultTest extends BaseUnitTest {
     // asserts
     Assertions.assertNotNull(result);
     Assertions.assertEquals(recordUpdated.getId(), result.getId());
-    Assertions.assertEquals(recordUpdated.getData(), result.getData());
+    Assertions.assertEquals(recordUpdated.getRecordData(), result.getRecordData());
 
     Mockito.verify(getRecordByIdUseCase, times(1)).execute(any());
     Mockito.verify(putRecordRepository, times(1)).execute(any());
@@ -72,7 +72,7 @@ class UpdateRecordByIdUseCaseDefaultTest extends BaseUnitTest {
     // given
     Record recordFound = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     // when

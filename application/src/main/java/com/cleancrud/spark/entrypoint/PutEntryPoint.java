@@ -34,7 +34,7 @@ public class PutEntryPoint extends EntryPoint {
       Long recordId = Long.valueOf(request.params("id"));
       RecordDto recordDto = deserialize(request.body(), RecordDto.class);
       RecordDto result = RecordMapper.entityToDto(
-          updateRecordByIdUseCase.execute(recordId, recordDto.getData()));
+          updateRecordByIdUseCase.execute(recordId, recordDto.getRecordData()));
       response.body(serialize(result));
     } catch (Exception e) {
       responseException(response, e);
@@ -49,7 +49,7 @@ public class PutEntryPoint extends EntryPoint {
       Assert.notNull(request.params("id"), "id cant be null");
       Assert.notNull(request.body(), "body cant be empty");
       RecordDto recordDto = deserialize(request.body(), RecordDto.class);
-      Assert.notNull(recordDto.getData(), "field data in body cant be null");
+      Assert.notNull(recordDto.getRecordData(), "field data in body cant be null");
     } catch (IllegalArgumentException e) {
       responseException(response, e);
       return false;

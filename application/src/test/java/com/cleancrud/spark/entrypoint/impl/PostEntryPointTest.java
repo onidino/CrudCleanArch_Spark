@@ -40,7 +40,7 @@ class PostEntryPointTest extends BaseUnitTest {
 
   @Test
   void whenPostRequestThenOk() throws UseCaseException {
-    request.body("{\"data\":\"test\"}");
+    request.body("{\"record_data\":\"test\"}");
 
     when(createRecordUseCase.execute("test"))
         .thenReturn(new Record(1234L, "test"));
@@ -48,12 +48,12 @@ class PostEntryPointTest extends BaseUnitTest {
     Response result = postEntryPoint.internalHandle(request, response);
 
     Assertions.assertNotNull(result);
-    Assertions.assertEquals("{\"id\":1234,\"data\":\"test\"}", result.body());
+    Assertions.assertEquals("{\"id\":1234,\"record_data\":\"test\"}", result.body());
   }
 
   @Test
   void whenPostRequestThenThrowsException() throws UseCaseException {
-    request.body("{\"data\":\"test\"}");
+    request.body("{\"record_data\":\"test\"}");
 
     when(createRecordUseCase.execute("test"))
         .thenThrow(new UseCaseException("CREATE: Could not create record"));

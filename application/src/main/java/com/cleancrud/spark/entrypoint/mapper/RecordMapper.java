@@ -13,7 +13,7 @@ public class RecordMapper {
   public static RecordDto entityToDto(Record recordEntity) {
     return new RecordDto(
         recordEntity.getId(),
-        recordEntity.getData()
+        recordEntity.getRecordData()
     );
   }
 

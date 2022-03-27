@@ -49,7 +49,7 @@ class GetEntryPointTest extends BaseUnitTest {
     Response result = getEntryPoint.internalHandle(request, response);
 
     Assertions.assertNotNull(result);
-    Assertions.assertEquals("{\"id\":1234,\"data\":\"test\"}", result.body());
+    Assertions.assertEquals("{\"id\":1234,\"record_data\":\"test\"}", result.body());
   }
 
   @Test
@@ -90,6 +90,6 @@ class GetEntryPointTest extends BaseUnitTest {
     Assertions.assertNotNull(result);
     Assertions.assertEquals(HttpStatus.OK_200, result.status());
     Assertions.assertEquals("application/json", result.type());
-    Assertions.assertEquals("{\"id\":1234,\"data\":\"test\"}", result.body());
+    Assertions.assertEquals("{\"id\":1234,\"record_data\":\"test\"}", result.body());
   }
 }

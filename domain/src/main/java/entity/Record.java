@@ -8,11 +8,11 @@ import lombok.Data;
 public class Record {
 
   private Long id;
-  private String data;
+  private String recordData;
 
-  public Record(Long id, String data) {
+  public Record(Long id, String recordData) {
     this.id = id;
-    this.data = data;
+    this.recordData = recordData;
   }
 
 }

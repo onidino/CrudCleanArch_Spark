@@ -42,7 +42,7 @@ class DeleteRecordByIdUseCaseDefaultTest extends BaseUnitTest {
     // given
     Record recordFound = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     // when
@@ -66,7 +66,7 @@ class DeleteRecordByIdUseCaseDefaultTest extends BaseUnitTest {
     // when
     Record recordFound = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     ArgumentCaptor<Long> argumentCaptorId = ArgumentCaptor.forClass(Long.class);

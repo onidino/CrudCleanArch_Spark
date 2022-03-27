@@ -13,9 +13,7 @@ import repository.PostRecordRepository;
 @Singleton
 public class PostRecordRepositoryDefault implements PostRecordRepository {
 
-  private static final String RECORD_DATA = "record_data";
-
-  private static final String INSERT = ""
+  private static final String INSERT_QUERY = ""
       + "INSERT INTO record (record_data) "
       + "values (:record_data)";
 
@@ -31,9 +29,9 @@ public class PostRecordRepositoryDefault implements PostRecordRepository {
     Optional<Long> recordId;
 
     try (Connection conn = sql2o.beginTransaction()) {
-      try (Query queryToExecute = conn.createQuery(INSERT)) {
+      try (Query queryToExecute = conn.createQuery(INSERT_QUERY)) {
         recordId = Optional.of(queryToExecute
-            .addParameter(RECORD_DATA, recordToSave.getData())
+            .addParameter("record_data", recordToSave.getRecordData())
             .executeUpdate()
             .getKey(Long.class));
         conn.commit();

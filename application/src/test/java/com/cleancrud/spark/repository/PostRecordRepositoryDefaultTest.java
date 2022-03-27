@@ -7,16 +7,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import utils.HsqlDatabaseUtils;
+import utils.HsqldbTestUtils;
 
-class PostRecordRepositoryDefaultTest extends HsqlDatabaseUtils {
+class PostRecordRepositoryDefaultTest extends HsqldbTestUtils {
 
   @InjectMocks
   private PostRecordRepositoryDefault postRecordRepositoryDefault;
 
   @BeforeEach
   public void initMocks() {
-    createLocalTable();
+    initLocalDB();
     postRecordRepositoryDefault = new PostRecordRepositoryDefault(getLocalHsqlDataSource());
     super.closeable = MockitoAnnotations.openMocks(this);
   }

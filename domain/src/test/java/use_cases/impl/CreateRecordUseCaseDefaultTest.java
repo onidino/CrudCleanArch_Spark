@@ -35,7 +35,7 @@ class CreateRecordUseCaseDefaultTest extends BaseUnitTest {
     // given
     Record recordSaved = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     // when
@@ -47,7 +47,7 @@ class CreateRecordUseCaseDefaultTest extends BaseUnitTest {
     // asserts
     Assertions.assertNotNull(result);
     Assertions.assertEquals(result.getId(), recordSaved.getId());
-    Assertions.assertEquals(result.getData(), recordSaved.getData());
+    Assertions.assertEquals(result.getRecordData(), recordSaved.getRecordData());
   }
 
   @Test

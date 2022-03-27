@@ -25,7 +25,7 @@ public class UpdateRecordByIdUseCaseDefault implements UpdateRecordByIdUseCase {
   @Override
   public Record execute(Long id, String data) throws UseCaseException {
     Record recordToUpdate = getRecordByIdUseCase.execute(id);
-    recordToUpdate.setData(data);
+    recordToUpdate.setRecordData(data);
 
     return putRecordRepository.execute(recordToUpdate)
         .orElseThrow(() -> new UseCaseException(

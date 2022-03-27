@@ -43,7 +43,7 @@ class PutEntryPointTest extends BaseUnitTest {
   @Test
   void whenPutRequestThenOk() throws UseCaseException {
     request.addParam("id", "1234");
-    request.body("{\"id\":1234,\"data\":\"updated_info\"}");
+    request.body("{\"id\":1234,\"record_data\":\"updated_info\"}");
 
     when(updateRecordByIdUseCase.execute(anyLong(), anyString()))
         .thenReturn(new Record(1234L, "updated_info"));
@@ -51,13 +51,13 @@ class PutEntryPointTest extends BaseUnitTest {
     Response result = putEntryPoint.internalHandle(request, response);
 
     Assertions.assertNotNull(result);
-    Assertions.assertEquals("{\"id\":1234,\"data\":\"updated_info\"}", result.body());
+    Assertions.assertEquals("{\"id\":1234,\"record_data\":\"updated_info\"}", result.body());
   }
 
   @Test
   void whenPutRequestThenThrowsException() throws UseCaseException {
     request.addParam("id", "1234");
-    request.body("{\"id\":1234,\"data\":\"updated_info\"}");
+    request.body("{\"id\":1234,\"record_data\":\"updated_info\"}");
 
     when(updateRecordByIdUseCase.execute(anyLong(), anyString()))
         .thenThrow(new UseCaseException("UPDATE: Could not update record with id [1234]"));
@@ -83,7 +83,7 @@ class PutEntryPointTest extends BaseUnitTest {
   @Test
   void whenPutRequestWithNullDataThenThrowsException() {
     request.addParam("id", "1234");
-    request.body("{\"id\":1234,\"data\":null}");
+    request.body("{\"id\":1234,\"record_data\":null}");
 
     Response result = putEntryPoint.internalHandle(request, response);
 

@@ -2,19 +2,21 @@ package com.cleancrud.spark.entrypoint.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Value;
 
 @Value
+@Data
 public class RecordDto {
 
   Long id;
-  String data;
+  String recordData;
 
   @JsonCreator
   public RecordDto(
       @JsonProperty("id") final Long id,
-      @JsonProperty("data") final String data) {
+      @JsonProperty("record_data") final String recordData) {
     this.id = id;
-    this.data = data;
+    this.recordData = recordData;
   }
 }
