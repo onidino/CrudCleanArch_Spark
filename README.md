@@ -1,6 +1,3 @@
-# CrudCleanArch_Spark
-
-
 SPARK JAVA + CLEAN ARCHITECTURE + mySQL DATABASE:
 ------------------------------------------------------------------------------------------------------------------------
 A simple Java Gradle REST-API with SPARK using Clean Architecture to assure the implementation of the SOLID principles and with mySQL database with DOCKER.
