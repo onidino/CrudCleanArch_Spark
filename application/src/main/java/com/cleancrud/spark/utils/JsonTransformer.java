@@ -1,11 +1,16 @@
 package com.cleancrud.spark.utils;
 
+import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
+
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import spark.ResponseTransformer;
 
 public class JsonTransformer implements ResponseTransformer {
 
-  private final Gson gson = new Gson();
+  private final Gson gson = new GsonBuilder()
+      .setFieldNamingPolicy(LOWER_CASE_WITH_UNDERSCORES)
+      .create();
 
   @Override
   public String render(Object model) {

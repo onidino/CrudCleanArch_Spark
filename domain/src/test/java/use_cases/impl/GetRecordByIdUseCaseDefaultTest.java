@@ -38,7 +38,7 @@ class GetRecordByIdUseCaseDefaultTest extends BaseUnitTest {
     // given
     Record recordFound = Record.builder()
         .id(1L)
-        .data("create_test")
+        .recordData("create_test")
         .build();
 
     // when
@@ -50,7 +50,7 @@ class GetRecordByIdUseCaseDefaultTest extends BaseUnitTest {
     // asserts
     Assertions.assertNotNull(result);
     Assertions.assertEquals(result.getId(), recordFound.getId());
-    Assertions.assertEquals(result.getData(), recordFound.getData());
+    Assertions.assertEquals(result.getRecordData(), recordFound.getRecordData());
   }
 
   @Test

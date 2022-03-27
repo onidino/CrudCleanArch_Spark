@@ -23,9 +23,9 @@ public class MainRouter implements RouteGroup {
 
         path("/clean/spark", () -> {
             post("/create", Application.getInjectorInstance(PostEntryPoint.class));
-            get("/read", Application.getInjectorInstance(GetEntryPoint.class));
-            put("/update", Application.getInjectorInstance(PutEntryPoint.class));
-            delete("/delete", Application.getInjectorInstance(DeleteEntryPoint.class));
+            get("/read/:id", Application.getInjectorInstance(GetEntryPoint.class));
+            put("/update/:id", Application.getInjectorInstance(PutEntryPoint.class));
+            delete("/delete/:id", Application.getInjectorInstance(DeleteEntryPoint.class));
         });
     }
 }

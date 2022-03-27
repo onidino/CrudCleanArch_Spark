@@ -20,7 +20,7 @@ public class CreateRecordUseCaseDefault implements CreateRecordUseCase {
   @Override
   public Record execute(String data) throws UseCaseException {
     Record newRecord = Record.builder()
-        .data(data)
+        .recordData(data)
         .build();
 
     Long id = postRecordRepository.execute(newRecord)

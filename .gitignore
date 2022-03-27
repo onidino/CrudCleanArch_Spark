@@ -12,6 +12,6 @@ bin/
 build/
 /application/build/
 /application/out/
-/application/src/test/java/utils
+/application/src/main/java/com/cleancrud/spark/entrypoint/dto/*
 /domain/build/
 /domain/out/
