@@ -1,5 +1,6 @@
 # CrudCleanArch_Spark
 
+
 SPARK + CLEAN ARCHITECTURE + mySQL DATABASE:
 ------------------------------------------------------------------------------------------------------------------------
 A simple REST-API with SPARK using the Clean Architecture assure the implementation of the SOLID principles and with mySQL database with DOCKER.
